@@ -3,7 +3,7 @@
 $host = 'localhost';
 $username = 'root';
 $password = '';
-$dbname = 'sistem-pengelolaan-barang';
+$dbname = 'shiptrack';
 
 
 $conn = mysqli_connect($host, $username, $password, $dbname);

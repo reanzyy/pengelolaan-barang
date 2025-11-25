@@ -26,7 +26,30 @@
         </li>
 
         <li class="menu-header">Menu Kelola</li>
-
+        <li class="menu-item">
+            <a href="./../../../pages/senders/index.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div>Pengirim</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="./../../../pages/receivers/index.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div>Penerima</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="./../../../pages/items/index.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div>Barang</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="./../../../pages/shipers/index.php" class="menu-link">
+                <i class="menu-icon tf-icons bx  bx-send"></i>
+                <div>Pengiriman</div>
+            </a>
+        </li>
         <li class="menu-item">
             <a href="./../../../pages/users/index.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-plus"></i>
