@@ -1,16 +1,23 @@
 <?php
-// function yang berada di folder app
-require('./../../app/user.php');
+require('./../../config.php');
+require('./../../app/middleware.php');
+require('./../../app/function/function.php');
 
-// logic untuk create data
+checkAdmin();
+
 if (isset($_POST['submit'])) {
-  if (store($_POST) > 0) {
+  $data = [
+    'name' => $_POST['name'],
+    'username' => $_POST['username'],
+    'role' => $_POST['role'],
+    'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+  ];
+  if (store('users', $data) > 0) {
     header('Location: index.php?message=store');
     exit;
   }
 }
 
-// breadcrumnd
 $title = "Tambah Pengguna";
 $items = [
   ['label' => 'Dashboard', 'url' => '../dashboard.php'],
@@ -40,6 +47,16 @@ include('./../../views/layouts/main-header.php');
               </div>
             </div>
             <div class="form-group row mb-3">
+              <label class="col-lg-3 col-form-label">Role <span class="text-danger">*</span></label>
+              <div class="col-lg-9">
+                <select name="role" class="form-control" required>
+                  <option value="" selected disabled>Pilih Role</option>
+                  <option value="admin">Admin</option>
+                  <option value="user">User</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row mb-3">
               <label class="col-lg-3 col-form-label">Password <span class="text-danger">*</span></label>
               <div class="col-lg-9">
                 <input type="password" name="password" class="form-control" required>
@@ -60,5 +77,4 @@ include('./../../views/layouts/main-header.php');
     </div>
   </div>
 </div>
-
 <?php include('./../../views/layouts/main-footer.php') ?>

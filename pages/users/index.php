@@ -1,8 +1,10 @@
 <?php
-// logic yang berada di folder app
-require('./../../app/user.php');
+require('./../../config.php');
+require('./../../app/middleware.php');
+require('./../../app/function/function.php');
 
-// breadcrumnd
+checkAdmin();
+
 $title = "Daftar Pengguna";
 $items = [
   ['label' => 'Dashboard', 'url' => '../dashboard.php'],
@@ -10,7 +12,6 @@ $items = [
   ['label' => 'Daftar', 'url' => '']
 ];
 
-// button
 $action_buttons = [
   ['icon' => '<i class="bx bx-plus"></i>', 'text' => 'Tambah Data', 'url' => 'create.php', 'class' => 'btn-primary'],
 ];
@@ -29,6 +30,7 @@ include('./../../views/layouts/main-header.php');
                 <th width="5%">No</th>
                 <th>Nama</th>
                 <th>Username</th>
+                <th>Role</th>
                 <th width="20%">Aksi</th>
               </tr>
             </thead>
@@ -39,19 +41,22 @@ include('./../../views/layouts/main-header.php');
               $users = query("SELECT * FROM users");
               ?>
 
-              <?php foreach ($users as $user) : ?>
+              <?php foreach ($users as $user): ?>
                 <tr>
                   <td><?= $no++ ?></td>
                   <td><?= $user->name ?></td>
                   <td><?= $user->username ?></td>
+                  <td>
+                    <?= $user->role == 'admin'
+                      ? "<span class='badge bg-primary'>Admin</span>"
+                      : "<span class='badge bg-success'>User</span>" ?>
+                  </td>
                   <td class="text-end">
                     <div class="d-flex gap-1">
-                      <a class="btn btn-sm btn-warning"
-                        href="edit.php?id=<?= $user->id ?>">
+                      <a class="btn btn-sm btn-warning" href="edit.php?id=<?= $user->id ?>">
                         <i class="bx bx-edit-alt"></i>Ubah
                       </a>
-                      <button type="button"
-                        data-action="delete.php?id=<?= $user->id ?>"
+                      <button type="button" data-action="delete.php?id=<?= $user->id ?>"
                         data-confirm-text="Anda yakin menghapus data pengguna ini?"
                         class="btn btn-sm btn-danger btn-delete">
                         <i class="bx bx-trash"></i>Hapus

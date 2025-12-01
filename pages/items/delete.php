@@ -1,10 +1,12 @@
 <?php
-// function yang berada di folder app
-require('./../../app/item.php');
+require('./../../config.php');
+require('./../../app/middleware.php');
+require('./../../app/function/function.php');
 
-// untuk mengambil data id dari url parameter
+checkAuth();
+
 $id = $_GET['id'];
 
-if (delete($id) > 0) {
-  header('location: index.php?pesan=delete');
+if (delete('items', $id) > 0) {
+  header('Location: index.php?message=delete');
 }

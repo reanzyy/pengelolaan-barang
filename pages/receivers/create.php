@@ -12,16 +12,19 @@ if (isset($_POST['submit'])) {
         'city' => $_POST['city'],
         'address' => $_POST['address']
     ];
-    if (store('senders', $data) > 0) {
+    if (store('receivers', $data) > 0) {
         header('Location: index.php?message=store');
         exit;
+    } else {
+        $error = "Gagal membuat data!";
     }
+
 }
 
-$title = "Tambah Pengirim";
+$title = "Tambah Penerima";
 $items = [
     ['label' => 'Dashboard', 'url' => '../dashboard.php'],
-    ['label' => 'Pengirim', 'url' => '../senders/index.php'],
+    ['label' => 'Penerima', 'url' => '../receivers/index.php'],
     ['label' => 'Tambah', 'url' => '']
 ];
 
