@@ -60,7 +60,7 @@ include('./../../views/layouts/main-header.php');
 
                     <div class="mb-3">
                         <label class="form-label">Phone</label>
-                        <input type="text" name="phone" value="<?= htmlspecialchars($receiver->phone) ?>"
+                        <input type="number" name="phone" value="<?= htmlspecialchars($receiver->phone) ?>"
                             class="form-control" required>
                     </div>
 

@@ -45,7 +45,7 @@ include('./../../views/layouts/main-header.php');
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Phone</label>
-                        <input type="text" name="phone" class="form-control" required>
+                        <input type="number" name="phone" class="form-control" required>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Kota</label>

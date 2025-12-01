@@ -3,9 +3,9 @@ require('./../../config.php');
 require('./../../app/middleware.php');
 require('./../../app/function/function.php');
 
-checkAdmin();
+checkAuth();
 
-$items = query("SELECT * FROM items");
+$stuffs = query("SELECT * FROM items");
 $senders = query("SELECT * FROM senders");
 $receivers = query("SELECT * FROM receivers");
 
@@ -55,7 +55,7 @@ include('./../../views/layouts/main-header.php');
                             <div class="col-lg-9">
                                 <select name="item_id" class="form-control" required>
                                     <option value="">-- Pilih Barang --</option>
-                                    <?php foreach ($data as $item): ?>
+                                    <?php foreach ($stuffs as $item): ?>
                                         <option value="<?= $item->id ?>">
                                             <?= $item->name ?> (Kategori: <?= $item->category ?>)
                                         </option>

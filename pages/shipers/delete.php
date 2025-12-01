@@ -3,7 +3,7 @@ require('./../../config.php');
 require('./../../app/middleware.php');
 require('./../../app/function/function.php');
 
-checkAdmin();
+checkAuth();
 
 $id = $_GET['id'];
 

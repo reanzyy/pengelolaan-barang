@@ -3,7 +3,7 @@ require('./../../config.php');
 require('./../../app/middleware.php');
 require('./../../app/function/function.php');
 
-checkAuth();
+checkAdmin();
 
 $title = "Daftar Barang";
 $items = [
