@@ -1,5 +1,9 @@
 <?php
+require('./../../config.php');
+require('./../../app/middleware.php');
 require('./../../app/function/function.php');
+
+checkAuth();
 
 $id = $_GET['id'] ?? null;
 if (!$id) {
@@ -13,13 +17,13 @@ if (!$item) {
     exit;
 }
 
-if (isset($_POST['submit'])) { 
+if (isset($_POST['submit'])) {
     $data = [
-        'name'     => $_POST['name'],
+        'name' => $_POST['name'],
         'category' => $_POST['category'],
-        'weight'   => $_POST['weight']
+        'weight' => $_POST['weight']
     ];
-    if (update('items', $data, $id) >= 0) { 
+    if (update('items', $data, $id) >= 0) {
         header('Location: index.php?message=update');
         exit;
     } else {
@@ -46,21 +50,21 @@ include('./../../views/layouts/main-header.php');
                         <label class="col-lg-3 col-form-label">Nama Barang <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <input type="text" name="name" class="form-control" required
-                                   value="<?= htmlspecialchars($item->name) ?>">
+                                value="<?= htmlspecialchars($item->name) ?>">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <label class="col-lg-3 col-form-label">Kategori <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <input type="text" name="category" class="form-control" required
-                                   value="<?= htmlspecialchars($item->category) ?>">
+                                value="<?= htmlspecialchars($item->category) ?>">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <label class="col-lg-3 col-form-label">Berat (gram) <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <input type="number" name="weight" class="form-control" required
-                                   value="<?= htmlspecialchars($item->weight) ?>">
+                                value="<?= htmlspecialchars($item->weight) ?>">
                         </div>
                     </div>
                     <div class="card-footer text-end border-top">

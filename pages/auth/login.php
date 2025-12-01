@@ -1,5 +1,9 @@
 <?php
-require './../../app/auth.php';
+require __DIR__ . '/../../config.php';
+require __DIR__ . '/../../app/middleware.php';
+require __DIR__ . '/../../app/auth.php';
+
+checkGuest();
 ?>
 
 <!DOCTYPE html>
@@ -40,9 +44,9 @@ require './../../app/auth.php';
                         <p class="mb-2">Silahkan login untuk memasuki aplikasi</p>
 
                         <?php if (!empty($error)): ?>
-                        <div class="alert alert-danger">
-                            <?= $error ?>
-                        </div>
+                            <div class="alert alert-danger">
+                                <?= $error ?>
+                            </div>
                         <?php endif; ?>
 
                         <form action="" method="post">
@@ -73,4 +77,5 @@ require './../../app/auth.php';
     <script src="/assets/js/main.js"></script>
 
 </body>
+
 </html>

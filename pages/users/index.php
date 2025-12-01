@@ -1,8 +1,10 @@
 <?php
-// logic yang berada di folder app
+require('./../../config.php');
+require('./../../app/middleware.php');
 require('./../../app/function/function.php');
 
-// breadcrumnd
+checkAdmin();
+
 $title = "Daftar Pengguna";
 $items = [
   ['label' => 'Dashboard', 'url' => '../dashboard.php'],
@@ -10,7 +12,6 @@ $items = [
   ['label' => 'Daftar', 'url' => '']
 ];
 
-// button
 $action_buttons = [
   ['icon' => '<i class="bx bx-plus"></i>', 'text' => 'Tambah Data', 'url' => 'create.php', 'class' => 'btn-primary'],
 ];

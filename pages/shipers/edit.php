@@ -1,5 +1,9 @@
 <?php
+require('./../../config.php');
+require('./../../app/middleware.php');
 require('./../../app/function/function.php');
+
+checkAdmin();
 
 $id = $_GET['id'] ?? null;
 if (!$id) {
@@ -13,7 +17,7 @@ if (!$shipment) {
     exit;
 }
 
-$data = query("SELECT * FROM items");
+$items = query("SELECT * FROM items");
 $senders = query("SELECT * FROM senders");
 $receivers = query("SELECT * FROM receivers");
 
@@ -25,7 +29,7 @@ if (isset($_POST['submit'])) {
         'receiver_id' => $_POST['receiver_id'],
         'status' => $_POST['status'],
     ];
-    if (update('shipments', $data, $id) >= 0) { 
+    if (update('shipments', $data, $id) >= 0) {
         header('Location: index.php?message=update');
         exit;
     }
@@ -107,14 +111,14 @@ include('./../../views/layouts/main-header.php');
                                 <?php
                                 $statuses = ["Proses", "Dikirim", "Diterima", "Batal"];
                                 foreach ($statuses as $status):
-                                ?>
-                                    <option value="<?= $status ?>" <?= $shipment->status == $status ? 'selected' : '' ?>><?= $status ?></option>
+                                    ?>
+                                    <option value="<?= $status ?>" <?= $shipment->status == $status ? 'selected' : '' ?>>
+                                        <?= $status ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
-
-                    <!-- FOOTER -->
+                    
                     <div class="card-footer text-end border-top">
                         <span class="text-muted float-start">
                             <strong class="text-danger">*</strong> Harus diisi

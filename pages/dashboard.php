@@ -1,10 +1,18 @@
-<?php include('./../views/layouts/main-header.php') ?>
+<?php
+require('./../config.php');
+require('./../app/middleware.php');
+
+checkAuth();
+
+$userName = isset($_SESSION['user']['name']) ? $_SESSION['user']['name'] : 'User';
+include('./../views/layouts/main-header.php')
+  ?>
 
 <div class="card mb-4">
   <div class="d-flex align-items-end row">
     <div class="col-sm-8">
       <div class="card-body">
-        <h5 class="card-title text-primary">Selamat Datang Admin! 🎉</h5>
+        <h5 class="card-title text-primary">Selamat Datang <?php echo htmlspecialchars($userName); ?>! 🎉</h5>
         <p class="mb-4">
           Kendalikan Efisiensi Mobilitas: Portal Admin Sistem Pengelolaan Barang
         </p>

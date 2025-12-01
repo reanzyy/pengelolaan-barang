@@ -1,8 +1,12 @@
 <?php
+require('./../../config.php');
+require('./../../app/middleware.php');
 require('./../../app/function/function.php');
+
+checkAuth();
 
 $id = $_GET['id'];
 
 if (delete('items', $id) > 0) {
-  header('location: index.php?pesan=delete');
+  header('Location: index.php?message=delete');
 }

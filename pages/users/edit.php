@@ -1,5 +1,9 @@
 <?php
+require('./../../config.php');
+require('./../../app/middleware.php');
 require('./../../app/function/function.php');
+
+checkAdmin();
 
 $id = $_GET['id'];
 $user = query("SELECT * FROM users WHERE id=" . $id)[0];

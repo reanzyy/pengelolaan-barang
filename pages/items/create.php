@@ -1,5 +1,9 @@
 <?php
+require('./../../config.php');
+require('./../../app/middleware.php');
 require('./../../app/function/function.php');
+
+checkAuth();
 
 if (isset($_POST['submit'])) {
     $data = [

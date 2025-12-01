@@ -1,7 +1,11 @@
 <?php
+require('./../../config.php');
+require('./../../app/middleware.php');
 require('./../../app/function/function.php');
 
-$data = query("SELECT * FROM items");
+checkAdmin();
+
+$items = query("SELECT * FROM items");
 $senders = query("SELECT * FROM senders");
 $receivers = query("SELECT * FROM receivers");
 

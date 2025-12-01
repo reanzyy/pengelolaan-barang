@@ -1,5 +1,9 @@
 <?php
+require('./../../config.php');
+require('./../../app/middleware.php');
 require('./../../app/function/function.php');
+
+checkAdmin();
 
 $id = $_GET['id'] ?? null;
 if (!$id) {
@@ -50,17 +54,20 @@ include('./../../views/layouts/main-header.php');
 
                     <div class="mb-3">
                         <label class="form-label">Nama</label>
-                        <input type="text" name="name" value="<?= htmlspecialchars($sender->name) ?>" class="form-control" required>
+                        <input type="text" name="name" value="<?= htmlspecialchars($sender->name) ?>"
+                            class="form-control" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Phone</label>
-                        <input type="text" name="phone" value="<?= htmlspecialchars($sender->phone) ?>" class="form-control" required>
+                        <input type="text" name="phone" value="<?= htmlspecialchars($sender->phone) ?>"
+                            class="form-control" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Kota</label>
-                        <input type="text" name="city" value="<?= htmlspecialchars($sender->city) ?>" class="form-control" required>
+                        <input type="text" name="city" value="<?= htmlspecialchars($sender->city) ?>"
+                            class="form-control" required>
                     </div>
 
                     <div class="mb-3">
