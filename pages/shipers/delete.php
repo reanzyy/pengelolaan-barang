@@ -1,10 +1,8 @@
 <?php
-// function yang berada di folder app
-require('./../../app/shiper.php');
+require('./../../app/function/function.php');
 
-// untuk mengambil data id dari url parameter
 $id = $_GET['id'];
 
-if (delete($id) > 0) {
+if (delete('shipments', $id) > 0) {
   header('location: index.php?pesan=delete');
 }

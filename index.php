@@ -1,5 +1,10 @@
-<?php include('./views/layouts/main-header.php') ?>
+<?php
+session_start();
 
+if (!isset($_SESSION['user'])) {
+    header("Location: pages/auth/login.php");
+    exit;
+}
 
-
-<?php include('./views/layouts/main-footer.php') ?>
+header("Location: pages/dashboard.php");
+exit;

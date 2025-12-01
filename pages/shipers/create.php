@@ -1,15 +1,19 @@
 <?php
-// function yang berada di folder app
-require('./../../app/shiper.php');
+require('./../../app/function/function.php');
 
-// ambil data item untuk dropdown
 $data = query("SELECT * FROM items");
 $senders = query("SELECT * FROM senders");
 $receivers = query("SELECT * FROM receivers");
 
-// logic untuk create data
 if (isset($_POST['submit'])) {
-    if (store($_POST) > 0) { // ganti sesuai function create di app
+    $data = [
+        'tracking_number' => $_POST['tracking_number'],
+        'item_id' => $_POST['item_id'],
+        'sender_id' => $_POST['sender_id'],
+        'receiver_id' => $_POST['receiver_id'],
+        'status' => $_POST['status'],
+    ];
+    if (store('shipments', $data) > 0) {
         header('Location: index.php?message=store');
         exit;
     }
@@ -32,8 +36,6 @@ include('./../../views/layouts/main-header.php');
                 <form action="" method="post">
 
                     <div class="card-body">
-
-                        <!-- NOMOR RESI -->
                         <div class="form-group row mb-3">
                             <label class="col-lg-3 col-form-label">
                                 Nomor Resi <span class="text-danger">*</span>
@@ -42,8 +44,6 @@ include('./../../views/layouts/main-header.php');
                                 <input type="text" name="tracking_number" class="form-control" required>
                             </div>
                         </div>
-
-                        <!-- ITEM -->
                         <div class="form-group row mb-3">
                             <label class="col-lg-3 col-form-label">
                                 Nama Barang <span class="text-danger">*</span>
@@ -59,8 +59,6 @@ include('./../../views/layouts/main-header.php');
                                 </select>
                             </div>
                         </div>
-
-                        <!-- PENGIRIM -->
                         <div class="form-group row mb-3">
                             <label class="col-lg-3 col-form-label">
                                 Pengirim <span class="text-danger">*</span>
@@ -76,8 +74,6 @@ include('./../../views/layouts/main-header.php');
                                 </select>
                             </div>
                         </div>
-
-                        <!-- PENERIMA -->
                         <div class="form-group row mb-3">
                             <label class="col-lg-3 col-form-label">
                                 Penerima <span class="text-danger">*</span>
@@ -93,8 +89,6 @@ include('./../../views/layouts/main-header.php');
                                 </select>
                             </div>
                         </div>
-
-                        <!-- STATUS -->
                         <div class="form-group row mb-3">
                             <label class="col-lg-3 col-form-label">Status</label>
                             <div class="col-lg-9">
@@ -106,10 +100,8 @@ include('./../../views/layouts/main-header.php');
                                 </select>
                             </div>
                         </div>
-
                     </div>
 
-                    <!-- FOOTER -->
                     <div class="card-footer text-end border-top">
                         <span class="text-muted float-start">
                             <strong class="text-danger">*</strong> Harus diisi
@@ -126,5 +118,4 @@ include('./../../views/layouts/main-header.php');
         </div>
     </div>
 </div>
-
 <?php include('./../../views/layouts/main-footer.php') ?>

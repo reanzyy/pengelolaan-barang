@@ -1,6 +1,5 @@
 <?php
-// logic yang berada di folder app
-require('./../../app/user.php');
+require('./../../app/function/function.php');
 
 // breadcrumnd
 $title = "Daftar Barang";
@@ -10,7 +9,6 @@ $items = [
     ['label' => 'Daftar', 'url' => '']
 ];
 
-// button
 $action_buttons = [
     ['icon' => '<i class="bx bx-plus"></i>', 'text' => 'Tambah Data', 'url' => 'create.php', 'class' => 'btn-primary'],
 ];

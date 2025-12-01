@@ -1,6 +1,6 @@
 <?php
 // logic yang berada di folder app
-require('./../../app/user.php');
+require('./../../app/function/function.php');
 
 // breadcrumnd
 $title = "Daftar Pengiriman";

@@ -1,8 +1,6 @@
 <?php
-// logic yang berada di folder app
-require('./../../app/sender.php');
+require('./../../app/function/function.php');
 
-// breadcrumnd
 $title = "Daftar Pengirim";
 $items = [
     ['label' => 'Dashboard', 'url' => '../dashboard.php'],
@@ -10,7 +8,6 @@ $items = [
     ['label' => 'Daftar', 'url' => '']
 ];
 
-// button
 $action_buttons = [
     ['icon' => '<i class="bx bx-plus"></i>', 'text' => 'Tambah Data', 'url' => 'create.php', 'class' => 'btn-primary'],
 ];
@@ -71,5 +68,4 @@ include('./../../views/layouts/main-header.php');
         </div>
     </div>
 </div>
-
 <?php include('./../../views/layouts/main-footer.php') ?>
