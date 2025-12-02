@@ -96,5 +96,19 @@ $userRole = isset($_SESSION['user']['role']) ? $_SESSION['user']['role'] : '';
                 </ul>
             </li>
         <?php } ?>
+
+        <li class="menu-header">Akun</li>
+        <li class="menu-item">
+            <a href="./../../../pages/profile/edit.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cog"></i>
+                <div>Ubah Profile</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="./../../../pages/auth/logout.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-power-off"></i>
+                <div>Log Out</div>
+            </a>
+        </li>
     </ul>
 </aside>
