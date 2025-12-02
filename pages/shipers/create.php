@@ -10,12 +10,18 @@ $senders = query("SELECT * FROM senders");
 $receivers = query("SELECT * FROM receivers");
 
 if (isset($_POST['submit'])) {
+
+
+    $item = query("SELECT weight, type FROM items WHERE id = " . $_POST['item_id'])[0];
+    $shipping_cost = calculateShippingCost($item->weight, $item->type);
+
     $data = [
         'tracking_number' => $_POST['tracking_number'],
         'item_id' => $_POST['item_id'],
         'sender_id' => $_POST['sender_id'],
         'receiver_id' => $_POST['receiver_id'],
         'status' => $_POST['status'],
+        'shipping_cost' => $shipping_cost
     ];
     if (store('shipments', $data) > 0) {
         header('Location: index.php?message=store');
@@ -23,11 +29,24 @@ if (isset($_POST['submit'])) {
     }
 }
 
-$title = "Daftar Pengiriman";
+function generateTrackingNumber($length = 12)
+{
+    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return 'PR-' . $randomString;
+}
+
+$randomTracking = generateTrackingNumber();
+
+
+$title = "Tambah Pengiriman";
 $items = [
     ['label' => 'Dashboard', 'url' => '../dashboard.php'],
     ['label' => 'Pengiriman', 'url' => '../shipers/index.php'],
-    ['label' => 'Daftar', 'url' => '']
+    ['label' => 'Tambah', 'url' => '']
 ];
 
 include('./../../views/layouts/main-header.php');
@@ -45,7 +64,7 @@ include('./../../views/layouts/main-header.php');
                                 Nomor Resi <span class="text-danger">*</span>
                             </label>
                             <div class="col-lg-9">
-                                <input type="text" name="tracking_number" class="form-control" required>
+                                <input type="text" name="tracking_number" class="form-control" value="<?= $randomTracking ?>" required readonly>
                             </div>
                         </div>
                         <div class="form-group row mb-3">

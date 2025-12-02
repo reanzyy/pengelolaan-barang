@@ -31,6 +31,16 @@ $userRole = isset($_SESSION['user']['role']) ? $_SESSION['user']['role'] : '';
             </a>
         </li>
 
+        <?php if ($userRole === 'courier') { ?>
+            <li class="menu-header">Menu Kelola</li>
+            <li class="menu-item">
+                <a href="./../../../pages/assigned/index.php" class="menu-link">
+                    <i class="menu-icon tf-icons bx  bx-send"></i>
+                    <div>Pengiriman Saya</div>
+                </a>
+            </li>
+        <?php } ?>
+
         <?php if ($userRole === 'admin') { ?>
             <li class="menu-header">Menu Kelola</li>
             <li class="menu-item">
@@ -45,16 +55,6 @@ $userRole = isset($_SESSION['user']['role']) ? $_SESSION['user']['role'] : '';
                     <div>Penerima</div>
                 </a>
             </li>
-        <?php } ?>
-
-        <li class="menu-item">
-            <a href="./../../../pages/shipers/index.php" class="menu-link">
-                <i class="menu-icon tf-icons bx  bx-send"></i>
-                <div>Pengiriman</div>
-            </a>
-        </li>
-
-        <?php if ($userRole === 'admin') { ?>
             <li class="menu-item">
                 <a href="./../../../pages/items/index.php" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-box"></i>

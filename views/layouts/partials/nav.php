@@ -14,7 +14,7 @@ $userRole = isset($_SESSION['user']['role']) ? $_SESSION['user']['role'] : '';
 
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <div class="navbar-nav align-items-center">
-            <a class="navbar-brand fw-bold" href="">KELOMPOK PENERBANG ROKET</a>
+            <a class="navbar-brand fw-bold" href="">PENERBANG ROKET EXPRESS</a>
         </div>
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">

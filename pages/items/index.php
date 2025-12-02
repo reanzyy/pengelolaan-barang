@@ -30,7 +30,8 @@ include('./../../views/layouts/main-header.php');
                                 <th width="5%">No</th>
                                 <th>Nama Barang</th>
                                 <th>Kategori</th>
-                                <th>Berat</th>
+                                <th>Tipe</th>
+                                <th>Berat (kg)</th>
                                 <th width="20%">Aksi</th>
                             </tr>
                         </thead>
@@ -46,6 +47,7 @@ include('./../../views/layouts/main-header.php');
                                     <td><?= $no++ ?></td>
                                     <td><?= $item->name ?></td>
                                     <td><?= $item->category ?></td>
+                                    <td><?= $item->type ?></td>
                                     <td><?= $item->weight ?></td>
                                     <td class="text-end">
                                         <div class="d-flex gap-1">
