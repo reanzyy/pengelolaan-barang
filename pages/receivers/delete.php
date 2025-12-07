@@ -3,10 +3,10 @@ require('./../../config.php');
 require('./../../app/middleware.php');
 require('./../../app/function/function.php');
 
-checkAuth();
+checkAdmin();
 
 $id = $_GET['id'];
 
-if (delete('shipments', $id) > 0) {
+if (delete('receivers', $id) > 0) {
   header('Location: index.php?message=delete');
 }

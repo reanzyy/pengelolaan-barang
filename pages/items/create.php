@@ -1,17 +1,26 @@
 <?php
-// logic yang berada di folder app
-require('./../../app/item.php'); // sesuaikan nama file dan function
+require('./../../config.php');
+require('./../../app/middleware.php');
+require('./../../app/function/function.php');
 
-// Logic untuk create data
+checkAuth();
+
 if (isset($_POST['submit'])) {
-    if (store($_POST) > 0) { // pastikan ada function store di app/item.php
+    $data = [
+        'name' => $_POST['name'],
+        'category' => $_POST['category'],
+        'weight' => $_POST['weight']
+    ];
+    if (store('items', $data) > 0) {
         header('Location: index.php?message=store');
         exit;
+    } else {
+        $error = "Gagal membuat data!";
     }
 }
 
 $title = "Tambah Barang";
-$items_breadcrumb = [
+$items = [
     ['label' => 'Dashboard', 'url' => '../dashboard.php'],
     ['label' => 'Barang', 'url' => '../items/index.php'],
     ['label' => 'Tambah', 'url' => '']
@@ -25,32 +34,24 @@ include('./../../views/layouts/main-header.php');
         <div class="card">
             <div class="card-body">
                 <form action="" method="post">
-
-                    <!-- NAMA BARANG -->
                     <div class="form-group row mb-3">
                         <label class="col-lg-3 col-form-label">Nama Barang <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <input type="text" name="name" class="form-control" required>
                         </div>
                     </div>
-
-                    <!-- KATEGORI -->
                     <div class="form-group row mb-3">
                         <label class="col-lg-3 col-form-label">Kategori <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <input type="text" name="category" class="form-control" required>
                         </div>
                     </div>
-
-                    <!-- BERAT -->
                     <div class="form-group row mb-3">
                         <label class="col-lg-3 col-form-label">Berat (gram) <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <input type="number" name="weight" class="form-control" required>
                         </div>
                     </div>
-
-                    <!-- FOOTER -->
                     <div class="card-footer text-end border-top">
                         <span class="text-muted float-start">
                             <strong class="text-danger">*</strong> Harus diisi
@@ -60,7 +61,9 @@ include('./../../views/layouts/main-header.php');
                             <button class="btn btn-primary" name="submit">Simpan</button>
                         </div>
                     </div>
-
                 </form>
             </div>
-        </div
+        </div>
+    </div>
+</div>
+<?php include('./../../views/layouts/main-footer.php') ?>

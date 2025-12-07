@@ -1,8 +1,10 @@
 <?php
-// logic yang berada di folder app
-require('./../../app/sender.php');
+require('./../../config.php');
+require('./../../app/middleware.php');
+require('./../../app/function/function.php');
 
-// breadcrumnd
+checkAdmin();
+
 $title = "Daftar Pengirim";
 $items = [
     ['label' => 'Dashboard', 'url' => '../dashboard.php'],
@@ -10,7 +12,6 @@ $items = [
     ['label' => 'Daftar', 'url' => '']
 ];
 
-// button
 $action_buttons = [
     ['icon' => '<i class="bx bx-plus"></i>', 'text' => 'Tambah Data', 'url' => 'create.php', 'class' => 'btn-primary'],
 ];
@@ -41,7 +42,7 @@ include('./../../views/layouts/main-header.php');
                             $senders = query("SELECT * FROM senders");
                             ?>
 
-                            <?php foreach ($senders as $sender) : ?>
+                            <?php foreach ($senders as $sender): ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $sender->name ?></td>
@@ -50,12 +51,10 @@ include('./../../views/layouts/main-header.php');
                                     <td><?= $sender->address ?></td>
                                     <td class="text-end">
                                         <div class="d-flex gap-1">
-                                            <a class="btn btn-sm btn-warning"
-                                                href="edit.php?id=<?= $sender->id ?>">
+                                            <a class="btn btn-sm btn-warning" href="edit.php?id=<?= $sender->id ?>">
                                                 <i class="bx bx-edit-alt"></i>Ubah
                                             </a>
-                                            <button type="button"
-                                                data-action="delete.php?id=<?= $sender->id ?>"
+                                            <button type="button" data-action="delete.php?id=<?= $sender->id ?>"
                                                 data-confirm-text="Anda yakin menghapus data Pengirim ini?"
                                                 class="btn btn-sm btn-danger btn-delete">
                                                 <i class="bx bx-trash"></i>Hapus
@@ -71,5 +70,4 @@ include('./../../views/layouts/main-header.php');
         </div>
     </div>
 </div>
-
 <?php include('./../../views/layouts/main-footer.php') ?>

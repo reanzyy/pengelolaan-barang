@@ -1,20 +1,29 @@
 <?php
-// function yang berada di folder app
-require('./../../app/user.php');
+require('./../../config.php');
+require('./../../app/middleware.php');
+require('./../../app/function/function.php');
 
-// untuk mengambil data id dari url parameter
+checkAdmin();
+
 $id = $_GET['id'];
 $user = query("SELECT * FROM users WHERE id=" . $id)[0];
 
-// logic untuk edit data
 if (isset($_POST['submit'])) {
-  if (update($_POST, $id) || 0 || 1) {
+  $data = [
+    'name' => $_POST['name'],
+    'username' => $_POST['username'],
+    'role' => $_POST['role'],
+    'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+  ];
+  if (!empty($_POST['password'])) {
+    $data['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+  }
+  if (update('users', $data, $id) || 0 || 1) {
     header('Location: index.php?message=update');
     exit;
   }
 }
 
-// breadcrumnd
 $title = "Ubah Pengguna";
 $items = [
   ['label' => 'Dashboard', 'url' => '../dashboard.php'],
@@ -45,7 +54,17 @@ include('./../../views/layouts/main-header.php');
               </div>
             </div>
             <div class="form-group row mb-3">
-              <label class="col-lg-3 col-form-label">Password <span class="text-danger">*</span></label>
+              <label class="col-lg-3 col-form-label">Role <span class="text-danger">*</span></label>
+              <div class="col-lg-9">
+                <select name="role" class="form-control" required>
+                  <option value="" selected disabled>Pilih Role</option>
+                  <option value="admin" <?= $user->role == 'admin' ? 'selected' : '' ?>>Admin</option>
+                  <option value="user" <?= $user->role == 'user' ? 'selected' : '' ?>>User</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+              <label class="col-lg-3 col-form-label">Password <span class="text-danger"></span></label>
               <div class="col-lg-9">
                 <input type="password" name="password" class="form-control">
               </div>
@@ -65,5 +84,4 @@ include('./../../views/layouts/main-header.php');
     </div>
   </div>
 </div>
-
 <?php include('./../../views/layouts/main-footer.php') ?>

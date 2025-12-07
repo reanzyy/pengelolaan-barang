@@ -1,8 +1,10 @@
 <?php
-// logic yang berada di folder app
-require('./../../app/receiver.php');
+require('./../../config.php');
+require('./../../app/middleware.php');
+require('./../../app/function/function.php');
 
-// breadcrumnd
+checkAdmin();
+
 $title = "Daftar Penerima";
 $items = [
     ['label' => 'Dashboard', 'url' => '../dashboard.php'],
@@ -10,7 +12,6 @@ $items = [
     ['label' => 'Daftar', 'url' => '']
 ];
 
-// button
 $action_buttons = [
     ['icon' => '<i class="bx bx-plus"></i>', 'text' => 'Tambah Data', 'url' => 'create.php', 'class' => 'btn-primary'],
 ];
@@ -41,7 +42,7 @@ include('./../../views/layouts/main-header.php');
                             $receivers = query("SELECT * FROM receivers");
                             ?>
 
-                            <?php foreach ($receivers as $receiver) : ?>
+                            <?php foreach ($receivers as $receiver): ?>
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $receiver->name ?></td>
@@ -50,12 +51,10 @@ include('./../../views/layouts/main-header.php');
                                     <td><?= $receiver->address ?></td>
                                     <td class="text-end">
                                         <div class="d-flex gap-1">
-                                            <a class="btn btn-sm btn-warning"
-                                                href="edit.php?id=<?= $receiver->id ?>">
+                                            <a class="btn btn-sm btn-warning" href="edit.php?id=<?= $receiver->id ?>">
                                                 <i class="bx bx-edit-alt"></i>Ubah
                                             </a>
-                                            <button type="button"
-                                                data-action="delete.php?id=<?= $receiver->id ?>"
+                                            <button type="button" data-action="delete.php?id=<?= $receiver->id ?>"
                                                 data-confirm-text="Anda yakin menghapus data Penerima ini?"
                                                 class="btn btn-sm btn-danger btn-delete">
                                                 <i class="bx bx-trash"></i>Hapus
