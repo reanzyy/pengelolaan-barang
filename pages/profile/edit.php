@@ -70,7 +70,7 @@ include('./../../views/layouts/main-header.php');
               <strong class="text-danger">*</strong> Harus diisi
             </span>
             <div class="float-end">
-              <a class="btn btn-secondary" href="index.php">Kembali</a>
+              <a class="btn btn-secondary" href="./../dashboard.php">Kembali</a>
               <button class="btn btn-primary" name="submit">Simpan</button>
             </div>
           </div>
