@@ -21,7 +21,8 @@ if (isset($_POST['submit'])) {
         'sender_id' => $_POST['sender_id'],
         'receiver_id' => $_POST['receiver_id'],
         'status' => $_POST['status'],
-        'shipping_cost' => $shipping_cost
+        'shipping_cost' => $shipping_cost,
+        'created_at' => date('Y-m-d H:i:s')
     ];
     if (store('shipments', $data) > 0) {
         header('Location: index.php?message=store');

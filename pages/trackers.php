@@ -218,7 +218,7 @@ if (isset($_GET['resi']) && $_GET['resi'] !== '') {
 
         <form class="search-box" method="get" action="">
           <div class="input-group input-group-lg">
-            <input type="text" name="resi" class="form-control" placeholder="Contoh: RESI-4B82K9QXLA" value="<?= $_GET['resi'] ?>" required>
+            <input type="text" name="resi" class="form-control" placeholder="Contoh: RESI-4B82K9QXLA" value="<?= $_GET['resi'] ?? '' ?>">
             <button class="btn btn-danger">Lacak</button>
           </div>
         </form>
