@@ -49,7 +49,7 @@ include('./../../views/layouts/main-header.php');
                   <td>
                     <?= $user->role == 'admin'
                       ? "<span class='badge bg-primary'>Admin</span>"
-                      : "<span class='badge bg-success'>User</span>" ?>
+                      : "<span class='badge bg-success'>Kurir</span>" ?>
                   </td>
                   <td class="text-end">
                     <div class="d-flex gap-1">

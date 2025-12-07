@@ -59,7 +59,7 @@ include('./../../views/layouts/main-header.php');
                 <select name="role" class="form-control" required>
                   <option value="" selected disabled>Pilih Role</option>
                   <option value="admin" <?= $user->role == 'admin' ? 'selected' : '' ?>>Admin</option>
-                  <option value="user" <?= $user->role == 'user' ? 'selected' : '' ?>>User</option>
+                  <option value="courier" <?= $user->role == 'courier' ? 'selected' : '' ?>>Kurir</option>
                 </select>
               </div>
             </div>

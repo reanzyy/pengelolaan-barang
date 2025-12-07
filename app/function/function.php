@@ -131,3 +131,26 @@ function delete($table, $id)
 
     return $ok ? $affected : false;
 }
+
+function calculateShippingCost($weight, $type)
+{
+    switch ($type) {
+        case 'REG':
+            return $weight * 10000;
+
+        case 'ECO':
+            return $weight * 7500;
+
+        case 'CARGO':
+            return ($weight < 10) ? 120000 : ($weight * 12000);
+
+        case 'FOOD':
+            return ($weight * 15000) + 5000;
+
+        case 'DOCUMENT':
+            return 8000;
+
+        default:
+            return 0;
+    }
+}

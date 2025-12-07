@@ -52,7 +52,7 @@ include('./../../views/layouts/main-header.php');
                 <select name="role" class="form-control" required>
                   <option value="" selected disabled>Pilih Role</option>
                   <option value="admin">Admin</option>
-                  <option value="user">User</option>
+                  <option value="courier">Kurir</option>
                 </select>
               </div>
             </div>

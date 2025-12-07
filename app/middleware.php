@@ -53,3 +53,8 @@ function checkGuest()
         exit;
     }
 }
+
+function authUser()
+{
+    return isset($_SESSION['user']) ? (object)$_SESSION['user'] : null;
+}

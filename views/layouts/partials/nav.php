@@ -14,7 +14,7 @@ $userRole = isset($_SESSION['user']['role']) ? $_SESSION['user']['role'] : '';
 
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <div class="navbar-nav align-items-center">
-            <a class="navbar-brand fw-bold" href="">KELOMPOK PENERBANG ROKET</a>
+            <a class="navbar-brand fw-bold" href="">PENERBANG ROKET EXPRESS</a>
         </div>
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
@@ -46,6 +46,10 @@ $userRole = isset($_SESSION['user']['role']) ? $_SESSION['user']['role'] : '';
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
+                        <a class="dropdown-item" href="../../pages/profile/edit.php">
+                            <i class="bx bx-cog me-2"></i>
+                            <span class="align-middle">Ubah Profile</span>
+                        </a>
                         <a class="dropdown-item" href="../../pages/auth/logout.php">
                             <i class="bx bx-power-off me-2"></i>
                             <span class="align-middle">Log Out</span>

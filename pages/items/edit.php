@@ -21,6 +21,7 @@ if (isset($_POST['submit'])) {
     $data = [
         'name' => $_POST['name'],
         'category' => $_POST['category'],
+        'type' => $_POST['type'],
         'weight' => $_POST['weight']
     ];
     if (update('items', $data, $id) >= 0) {
@@ -54,14 +55,33 @@ include('./../../views/layouts/main-header.php');
                         </div>
                     </div>
                     <div class="form-group row mb-3">
-                        <label class="col-lg-3 col-form-label">Kategori <span class="text-danger">*</span></label>
+                        <label class="col-lg-3 col-form-label">Kategori</label>
                         <div class="col-lg-9">
-                            <input type="text" name="category" class="form-control" required
-                                value="<?= htmlspecialchars($item->category) ?>">
+                            <select name="category" class="form-control">
+                                <?php
+                                $categories = ["Elektronik", "Furniture", "Peralatan", "Pakaian", "Lainnya"];
+                                foreach ($categories as $category): ?>
+                                    <option value="<?= $category ?>" <?= $item->category == $category ? 'selected' : '' ?>>
+                                        <?= $category ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row mb-3">
-                        <label class="col-lg-3 col-form-label">Berat (gram) <span class="text-danger">*</span></label>
+                        <label class="col-lg-3 col-form-label">Tipe</label>
+                        <div class="col-lg-9">
+                            <select name="type" class="form-control">
+                                <?php
+                                $types = ["REG", "ECO", "CARGO", "FOOD", "DOCUMENT"];
+                                foreach ($types as $type): ?>
+                                    <option value="<?= $type ?>" <?= $item->type == $type ? 'selected' : '' ?>>
+                                        <?= $type ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label class="col-lg-3 col-form-label">Berat (kg) <span class="text-danger">*</span></label>
                         <div class="col-lg-9">
                             <input type="number" name="weight" class="form-control" required
                                 value="<?= htmlspecialchars($item->weight) ?>">

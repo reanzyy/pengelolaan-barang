@@ -1,12 +1,20 @@
 <?php
 require('./../config.php');
+require './../app/function/function.php';
 require('./../app/middleware.php');
 
 checkAuth();
 
+$courier_id = !isAdmin() ? authUser()->id : null;
+
+$total = query("SELECT COUNT(*) AS c FROM shipment_assignments RIGHT JOIN shipments ON shipment_assignments.shipment_id = shipments.id" . ($courier_id ? " WHERE courier_id = '$courier_id'" : ""))[0]->c;
+$proses = query("SELECT COUNT(*) AS c FROM shipment_assignments RIGHT JOIN shipments ON shipment_assignments.shipment_id = shipments.id WHERE status = 'Proses'" . ($courier_id ? " AND courier_id = '$courier_id'" : ""))[0]->c;
+$dikirim = query("SELECT COUNT(*) AS c FROM shipment_assignments RIGHT JOIN shipments ON shipment_assignments.shipment_id = shipments.id WHERE status = 'Dikirim'" . ($courier_id ? " AND courier_id = '$courier_id'" : ""))[0]->c;
+$diterima = query("SELECT COUNT(*) AS c FROM shipment_assignments RIGHT JOIN shipments ON shipment_assignments.shipment_id = shipments.id WHERE status = 'Diterima'" . ($courier_id ? " AND courier_id = '$courier_id'" : ""))[0]->c;
+
 $userName = isset($_SESSION['user']['name']) ? $_SESSION['user']['name'] : 'User';
 include('./../views/layouts/main-header.php')
-  ?>
+?>
 
 <div class="card mb-4">
   <div class="d-flex align-items-end row">
@@ -26,6 +34,44 @@ include('./../views/layouts/main-header.php')
       </div>
     </div>
   </div>
+</div>
+<div class="row">
+  <div class="col-md-3 mb-3">
+    <div class="card shadow-sm border-start border-4 border-primary">
+      <div class="card-body">
+        <h6 class="text-muted mb-1">Total Assigned</h6>
+        <h2 class="fw-bold"><?= $total ?></h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 mb-3">
+    <div class="card shadow-sm border-start border-4 border-warning">
+      <div class="card-body">
+        <h6 class="text-muted mb-1">Dalam Proses</h6>
+        <h2 class="fw-bold"><?= $proses ?></h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 mb-3">
+    <div class="card shadow-sm border-start border-4 border-info">
+      <div class="card-body">
+        <h6 class="text-muted mb-1">Sedang Dikirim</h6>
+        <h2 class="fw-bold"><?= $dikirim ?></h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 mb-3">
+    <div class="card shadow-sm border-start border-4 border-success">
+      <div class="card-body">
+        <h6 class="text-muted mb-1">Selesai / Diterima</h6>
+        <h2 class="fw-bold"><?= $diterima ?></h2>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <?php include('./../views/layouts/main-footer.php') ?>
